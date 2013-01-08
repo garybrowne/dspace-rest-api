@@ -62,6 +62,8 @@ public class ItemEntity extends ItemEntityTrim {
         try {
             List<Object> entities = new ArrayList<Object>();
 
+            boolean trim = uparams.getTrim();
+
             MetadataField[] fields = MetadataField.findAll(context);
             for (MetadataField field : fields) {
                 int id = field.getFieldID();
