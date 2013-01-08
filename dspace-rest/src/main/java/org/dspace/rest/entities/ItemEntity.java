@@ -76,7 +76,7 @@ public class ItemEntity extends ItemEntityTrim {
 
                 if(trim){
                     for(String singleMeta: simpleMeta ){
-                        if(singleMeta == name)
+                        if(singleMeta.equals(name))
                             entities.add(new MetadataFieldEntity(id, name));
                     }
                 }
