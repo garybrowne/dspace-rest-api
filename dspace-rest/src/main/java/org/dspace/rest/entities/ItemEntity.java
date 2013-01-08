@@ -63,6 +63,7 @@ public class ItemEntity extends ItemEntityTrim {
             List<Object> entities = new ArrayList<Object>();
 
             boolean trim = uparams.getTrim();
+            String[] simpleMeta = {"dc.title", "dc.contributor.author", "dc.subject", "dc.date.issued"};
 
             MetadataField[] fields = MetadataField.findAll(context);
             for (MetadataField field : fields) {
@@ -72,7 +73,16 @@ public class ItemEntity extends ItemEntityTrim {
                 if (field.getQualifier() != null) {
                     name += "." + field.getQualifier();
                 }
-                entities.add(new MetadataFieldEntity(id, name));
+
+                if(trim){
+                    for(String singleMeta: simpleMeta ){
+                        if(singleMeta == name)
+                            entities.add(new MetadataFieldEntity(id, name));
+                    }
+                }
+                else{
+                    entities.add(new MetadataFieldEntity(id, name));
+                }
             }
             return entities;
         } catch (SQLException e) {
